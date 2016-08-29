@@ -8,13 +8,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 import br.com.fiap.dao.Dao;
+import br.com.fiap.dao.DefinedAlunosDao;
 import br.com.fiap.dao.GenericDao;
 import br.com.fiap.entity.Aluno;
 import br.com.fiap.entity.Curso;
+import br.com.fiap.entity.Disciplina;
+import br.com.fiap.entity.Notas;
 
 
 /**
@@ -24,11 +27,13 @@ import br.com.fiap.entity.Curso;
 
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class AlunosBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Aluno aluno;
+	
+	private int currentAlunoId;
 
 	private int status;
 
@@ -90,7 +95,7 @@ public class AlunosBean implements Serializable {
 		}
 	}
 
-	public List<Aluno> listar(){
+	public List<Aluno> getListar(){
 		Dao<Aluno> dao = new GenericDao<Aluno>(Aluno.class);		
 		return dao.listar();
 	}
@@ -99,10 +104,27 @@ public class AlunosBean implements Serializable {
 
 		Set<String> lista = new HashSet<String>();
 
-		for(Aluno var : this.listar()) {
+		for(Aluno var : this.getListar()) {
 			lista.add(var.getNome());
 		}
 		return lista;
 	}
+	
+	
+	public void onload(String value){
+		System.out.println("bateu " + value);
+		
+		this.currentAlunoId = Integer.parseInt(value);
+		Dao<Aluno> dao = new GenericDao<Aluno>(Aluno.class);
+		this.aluno = dao.buscar(currentAlunoId);
+	}
+	
+	public List<Notas> getNotas(){
+		DefinedAlunosDao dao = new DefinedAlunosDao(Aluno.class);
+		
+		return dao.buscaNotasPorAlunoId(currentAlunoId);
+	}
+	
+	
 }
 

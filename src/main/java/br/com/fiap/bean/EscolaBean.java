@@ -7,10 +7,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 import br.com.fiap.dao.Dao;
 import br.com.fiap.dao.GenericDao;
@@ -22,7 +21,7 @@ import br.com.fiap.entity.Escola;
  */
 
 @ManagedBean
-@SessionScoped
+@RequestScoped	
 public class EscolaBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

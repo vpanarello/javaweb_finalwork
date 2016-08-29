@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Cadastro de Disciplinas</title>
+	<link rel="stylesheet" type="text/css" href="css/geral.css"></link>
+</h:head>
+
+<h:body>
+	<ui:include src="/menu.xhtml" />
+
+	<h2>Detalhes do Aluno</h2>
+	
+
+
+<!-- 	<h:outputText value="#{param['id']}" /> -->
+
+	<f:metadata>
+		<f:viewParam name="param" value="" />
+		<f:event type="preRenderView" listener="#{alunosBean.onload(param['id'])}" />
+	</f:metadata>
+	
+	
+	<h:outputText value="#{alunosBean.aluno.nome}" />
+	
+	
+		<h:dataTable value="#{alunosBean.notas}" var="notas"
+		styleClass="tabela" headerClass="cabecalho"
+		columnClasses="col1,col2,col3,col4">
+		
+		<h:column>
+			<f:facet name="header">nome</f:facet>
+			<h:outputText value="#{notas.disciplina.nome}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Projeto 01</f:facet>
+			<h:outputText value="#{notas.projeto01}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Atividade Pratica</f:facet>
+			<h:outputText value="#{notas.atividadePratica}" />
+		</h:column>
+			<h:column>
+			<f:facet name="header">Projeto 02</f:facet>
+			<h:outputText value="#{notas.projeto02}" />
+		</h:column>
+		
+	</h:dataTable>
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+</h:body>
+</html>
