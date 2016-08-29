@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Cadastro de Disciplinas</title>
+	<link rel="stylesheet" type="text/css" href="css/geral.css"></link>
+</h:head>
+
+<h:body>
+	<ui:include src="/menu.xhtml" />
+
+	<h2>Cadastro Disciplina</h2>
+	
+
+	<c:if test="#{alunosBean.status==1}">
+		<h5 class="message">Cadastro de escola realizado com sucesso</h5>
+    </c:if>
+
+
+<!-- 	<h:outputText value="#{escolaBean.status}" escape="false"/> -->
+
+	<h:form enctype="form-data">
+		
+		<h:outputText value="Curso" /><br />
+		<h:selectOneMenu value="#{alunosBean.nomeCurso}">
+	   	 <f:selectItems value="#{cursoBean.comboBox}" />
+		</h:selectOneMenu>
+		<br />
+		<h:outputText value="Nome" />
+		<br />
+		<h:inputText value="#{alunosBean.aluno.nome}" />
+		<br />
+		<h:outputText value="Matricula" />
+		<br />
+		<h:inputText value="#{alunosBean.aluno.matricula}" />
+		<br />
+		<h:commandButton value="Incluir" action="#{alunosBean.cadastrar()}" />
+	</h:form>
+</h:body>
+</html>

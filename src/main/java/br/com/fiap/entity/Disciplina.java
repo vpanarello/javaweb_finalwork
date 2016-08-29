@@ -5,6 +5,7 @@ package br.com.fiap.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,35 +14,30 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * simple-webapp / Aluno.java
+ * simple-webapp / Disciplina.java
  * FIAP / RM30222 - Vagner Panarello
  */
 
 @Entity
-@Table(name="alunos")
-public class Aluno {
+@Table(name="Disciplinas")
+public class Disciplina {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id")
 	private int id;
-	
+
 	@Column(name="nome")
 	private String nome;
-		
-	@Column(name="matricula")
-	private String matricula;
 	
-	@Column(name="nota_01")
-	private float projeto01;
+	@Column(name="codigo")
+	private String codigo;
 	
-	@Column(name="nota_02")
-	private float atividadePratica;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="professor_id")
+	private Professor professor;
 	
-	@Column(name="nota_03")
-	private float projeto02;
-	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="curso_id")
 	private Curso curso;
 
@@ -61,12 +57,20 @@ public class Aluno {
 		this.nome = nome;
 	}
 
-	public String getMatricula() {
-		return matricula;
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 
 	public Curso getCurso() {
@@ -76,5 +80,6 @@ public class Aluno {
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
-	
+
+
 }

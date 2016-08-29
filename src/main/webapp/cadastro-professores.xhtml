@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Cadastro</title>
+	<link rel="stylesheet" type="text/css" href="css/geral.css"></link>
+</h:head>
+
+<h:body>
+	<ui:include src="/menu.xhtml" />
+
+	<h2>Cadastro Professor</h2>
+	
+	
+	<h:outputText value="Selecione Escola" />
+	<c:if test="#{professorBean.status==1}">
+		<h5 class="message">Cadastro de escola realizado com sucesso</h5>
+    </c:if>
+
+
+<!-- 	<h:outputText value="#{escolaBean.status}" escape="false"/> -->
+
+	<h:form enctype="form-data">
+	
+		<h:selectOneMenu value="#{professorBean.nomeEscola}">
+	   	 <f:selectItems value="#{escolaBean.comboBox}" />
+		</h:selectOneMenu>
+		
+		<br />
+		<h:outputText value="Nome" />
+		<br />
+		<h:inputText value="#{professorBean.professor.nome}" />
+		<br />
+		<h:outputText value="Registro" />
+		<br />
+		<h:inputText value="#{professorBean.professor.registro}" />
+		<br />
+		<h:outputText value="Especialização" />
+		<br />
+		<h:inputText value="#{professorBean.professor.especializacao}" />
+		<br />
+		<h:commandButton value="Incluir" action="#{professorBean.cadastrar()}" />
+	</h:form>
+</h:body>
+</html>

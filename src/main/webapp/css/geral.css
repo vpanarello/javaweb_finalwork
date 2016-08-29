@@ -1,0 +1,32 @@
+@CHARSET "ISO-8859-1";
+
+
+body {
+	padding-top:20px;
+	padding-left:30px;
+	font-family: Monospace;
+}
+
+ h5.message  {
+	color: black;
+	text-align: center;
+	padding: 10px;
+	width: 300px;
+	background-color: GreenYellow;
+
+}
+
+ul.main-menu {
+	max-width:60%;
+	border: solid;
+}
+
+ul.main-menu li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 20px;
+	
+	
+	
+}
+
